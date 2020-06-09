@@ -54,10 +54,10 @@ public interface ReadWriteLock {
     /**
      * 工厂方法
      */
-    private static ReadWriteLock getInstance(){
+    public static ReadWriteLock getInstance(){
         return new ReadWriteLockImpl();
     }
-    private static ReadWriteLock getInstance(boolean preferWriter){
+    public static ReadWriteLock getInstance(boolean preferWriter){
         return new ReadWriteLockImpl(preferWriter);
     }
 }
