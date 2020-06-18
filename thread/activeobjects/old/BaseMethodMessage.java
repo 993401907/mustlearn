@@ -15,5 +15,8 @@ public abstract class BaseMethodMessage {
         this.map = map;
     }
 
+    /**
+     * 执行
+     */
     public abstract void execute();
 }
