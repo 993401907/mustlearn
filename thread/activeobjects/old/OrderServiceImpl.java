@@ -1,5 +1,6 @@
 package thread.activeobjects.old;
 
+import thread.activeobjects.general.ActiveMethod;
 import thread.future.Future;
 import thread.future.FutureService;
 
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class OrderServiceImpl implements OrderService{
     @Override
+    @ActiveMethod
     public Future<String> findOrderDetails(long orderId) {
         return FutureService.<Long, String>newService().submit(input ->{
             try {
@@ -23,6 +25,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    @ActiveMethod
     public void order(String account, long orderId) {
         try {
             TimeUnit.SECONDS.sleep(5);
