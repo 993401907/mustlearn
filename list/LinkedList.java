@@ -1,5 +1,6 @@
 package list;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -11,6 +12,30 @@ public class LinkedList<E> implements List<E> {
     private int size;
     private Node<E> first;
     private Node<E> last;
+
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedListIter();
+    }
+
+    private class LinkedListIter implements Iterator<E> {
+        Node<E> curr = first;
+
+        @Override
+        public boolean hasNext() {
+            return curr.next != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E e = curr.val;
+            curr = curr.next;
+            return e;
+        }
+    }
 
     private static class Node<E> {
         Node<E> prev;
@@ -220,7 +245,7 @@ public class LinkedList<E> implements List<E> {
                     return;
                 }
             }
-        }else {
+        } else {
             for (Node<E> temp = first; temp != null; temp = temp.next) {
                 if (val.equals(temp.val)) {
                     unlink(temp);

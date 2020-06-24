@@ -1,8 +1,8 @@
 package list;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @author wulizi
@@ -140,7 +140,7 @@ public class ArrayList<E> implements List<E> {
                     return i;
                 }
             }
-        }else {
+        } else {
             for (int i = 0; i < size; i++) {
                 if (val.equals(data[i])) {
                     return i;
@@ -158,6 +158,30 @@ public class ArrayList<E> implements List<E> {
     @Override
     public boolean contains(E val) {
         return indexOf(val) > 0;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new ListIter();
+    }
+
+    private class ListIter implements Iterator<E> {
+        int curr = 0;
+
+        @Override
+        public boolean hasNext() {
+            return curr < size;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E e = (E) data[curr];
+            curr++;
+            return e;
+        }
     }
 
 }

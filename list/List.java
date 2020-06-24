@@ -4,7 +4,7 @@ package list;
  * @author wulizi
  * list接口
  */
-public interface List<E>{
+public interface List<E> extends Iterable<E>{
     /**
      * 获取元素
      * @param idx 指定位置
