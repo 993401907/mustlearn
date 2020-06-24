@@ -1,6 +1,7 @@
 package list;
 
-import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @author wulizi
@@ -10,6 +11,28 @@ public class SinglyLinkedList<E> implements List<E> {
     private int size;
     private Node<E> root = null;
 
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedListIter();
+    }
+    private class LinkedListIter implements Iterator<E> {
+        Node<E> curr = root;
+
+        @Override
+        public boolean hasNext() {
+            return curr.next != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E e = curr.val;
+            curr = curr.next;
+            return e;
+        }
+    }
     private static class Node<E> {
         Node<E> next;
         E val;
