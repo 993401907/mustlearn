@@ -3,42 +3,93 @@ package map;
 /**
  * @author wulizi
  */
-public interface Map<K extends Comparable<K>, V>{
-    /**
-     * put
-     * @param key .
-     * @param val .
-     */
-    void put(K key, V val);
+public interface Map<Key extends Comparable<Key>, Value> {
 
     /**
-     * get
-     * @param key .
-     * @return V .
+     * 将键值队存入表中
+     * @param key 键
+     * @param val 值
      */
-    V get(K key);
+    void put(Key key, Value val);
 
     /**
-     * isEmpty
+     * 通过键获取值
+     * @param key 键
+     * @return 值
+     */
+    Value get(Key key);
+
+    /**
+     * 从表中删除key和对应的值
+     * @param key 键
+     */
+    void delete(Key key);
+
+    /**
+     * 是否包含某个值
+     * @param key 键
+     * @return 是
+     */
+    boolean contains(Key key);
+
+    /**
+     * 符号表是否为空
      * @return .
      */
     boolean isEmpty();
 
     /**
-     * size
+     * 符号表的数量
      * @return .
      */
     int size();
+    /**
+     * 最小的键
+     * @return .
+     */
+    Key min();
 
     /**
-     * delete
-     * @param key .
+     * 最大的键
+     * @return .
      */
-    void delete(K key);
+    Key max();
 
     /**
-     * 获取key列表
-     * @return keys
+     * 小于等于该键的键
+     * @param key 键
+     * @return key
      */
-    Iterable<K> keys();
+    Key floor(Key key);
+
+    /**
+     * 大于等于该键的键
+     * @param key 键
+     * @return key
+     */
+    Key ceiling(Key key);
+
+    /**
+     * 小于key的键的数量
+     * @param key 键
+     * @return .
+     */
+    int rank(Key key);
+
+    /**
+     * 排名为k的键
+     * @param k 排名
+     * @return 键
+     */
+    Key select(int k);
+
+    /**
+     * 删除最小的键
+     */
+    void deleteMin();
+
+    /**
+     * 删除最大的键
+     */
+    void deleteMax();
 }
