@@ -13,20 +13,20 @@ public abstract class AbstractSort {
      *
      * @param a 带排序数组
      */
-    public abstract void sort(Comparable[] a);
+    public abstract void sort(Comparable<?>[] a);
 
-    public void swap(Comparable[] a, int i, int j) {
-        Comparable temp = a[i];
+    public void swap(Comparable<?>[] a, int i, int j) {
+        Comparable<?> temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
 
     @SuppressWarnings("unchecked")
-    public boolean less(Comparable v, Comparable w) {
+    public boolean less(Comparable v, Comparable<?> w) {
         return v.compareTo(w) < 0;
     }
 
-    public boolean isSorted(Comparable[] a) {
+    public boolean isSorted(Comparable<?>[] a) {
         for (int i = 1; i < a.length; i++) {
             if (less(a[i], a[i - 1])) {
                 return false;
@@ -35,7 +35,7 @@ public abstract class AbstractSort {
         return true;
     }
 
-    public void show(Comparable[] a){
+    public void show(Comparable<?>[] a){
         System.out.println(Arrays.toString(a));
     }
 }

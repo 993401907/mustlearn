@@ -1,7 +1,7 @@
 package map;
 
 /**
- * 二叉查找树
+ *
  * @author wulizi
  */
 public class BSTreeMap<Key extends Comparable<Key>, Value> implements Map<Key, Value> {
